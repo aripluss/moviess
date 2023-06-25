@@ -1,0 +1,43 @@
+{
+  "headerHome": "Home",
+  "headerMovies": "Movies",
+
+  "languageSelect": "Language",
+
+  "homePageTitle": "Today's trending movies",
+
+  "moviesPageNoMovies": "Sorry, there are no movies...",
+
+  "movieDetailsPageYear": "Year",
+  "movieDetailsPageGenres": "Genres",
+  "movieDetailsPageCountries": "Countries",
+  "movieDetailsPageOverview": "Overview",
+  "movieDetailsPageHideCast": "Hide Cast",
+  "movieDetailsPageShowCast": "Show Cast",
+  "movieDetailsPageHideReviews": "Hide Reviews",
+  "movieDetailsPageShowReviews": "Show Reviews",
+
+  "сastNoInformation": "Sorry, no information yet",
+  "сastCharacter": "Character",
+  "сastName": "Name",
+
+  "reviewsNoReviews": "No reviews yet",
+  "reviewsAuthor": "Author",
+  "reviewsContent": "Content",
+
+  "footerMotto": "your favorite movies and series.",
+  "footerRights": "All rights reserved.",
+  "footerDevelopedBy": "Site developed by",
+  "footerDeveloper": "Iryna Pomeshkina",
+
+  "page404": "404 Page Not Found.",
+
+  "goHomeBtn": "Go Home",
+  "goBackBtn": "Go back",
+
+  "loaderText": "Loading...",
+
+  "searchFormLabel": "Let's try to find a movie",
+  "searchFormPlaceholder": "Enter the movie title",
+  "searchFormBtn": "Search"
+}

@@ -14,7 +14,7 @@ export const StyledMovieDetailsContainer = styled.div`
   .movie__poster {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: ${props => props.theme.radii.medium};
 
     @media screen and (min-width: 768px) {
       width: 250px;
@@ -42,12 +42,13 @@ export const StyledMovieDetailsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffde59;
-    color: #000;
-    border: 1px solid #ffde59;
-    border-radius: 10px;
+    background-color: ${props => props.theme.colors.accentSecondary};
+    //color: #000;
+    border: ${props => props.theme.borders.normal}
+      ${props => props.theme.colors.accentSecondary};
+    border-radius: ${props => props.theme.radii.medium};
     padding: 6px 12px;
-    font-weight: 500;
+    font-weight: ${props => props.theme.fontWeights.medium};
     box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
   }
 
@@ -55,11 +56,11 @@ export const StyledMovieDetailsContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
+    border: ${props => props.theme.borders.normal} red;
     color: red;
-    border-radius: 10px;
+    border-radius: ${props => props.theme.radii.medium};
     padding: 6px 10px;
-    font-weight: 500;
+    font-weight: ${props => props.theme.fontWeights.medium};
     box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
   }
 `;

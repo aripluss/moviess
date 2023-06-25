@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import { getMovieCredits } from 'service/api';
 import { Loader } from 'components/index';
@@ -8,6 +9,8 @@ import { Loader } from 'components/index';
 import { StyledCastList } from './Cast.styled';
 
 const Cast = () => {
+  const { t } = useTranslation();
+
   const [movieCast, setMovieCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -47,7 +50,7 @@ const Cast = () => {
             textAlign: 'center',
           }}
         >
-          Sorry, no information yet
+          {t('сastNoInformation')}
         </p>
       )}
 
@@ -64,10 +67,10 @@ const Cast = () => {
                   loading="lazy"
                 />
                 <p>
-                  <b>Character:</b> {character}
+                  <b>{t('сastCharacter')}:</b> {character}
                 </p>
                 <p>
-                  <b>Name:</b> {name}
+                  <b>{t('сastName')}:</b> {name}
                 </p>
               </li>
             );

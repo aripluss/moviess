@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { getMovieDetails } from 'service/api';
 import { Loader } from 'components/index';
@@ -10,6 +11,7 @@ import { StyledContainer } from 'components/Container/Container.styled';
 import { LinkButton } from 'components/LinkButton/LinkButton.styled';
 
 const MovieDetailsPage = () => {
+  const { t } = useTranslation();
   const { movieId } = useParams();
   const location = useLocation();
 
@@ -62,7 +64,12 @@ const MovieDetailsPage = () => {
 
       <StyledSection style={{ paddingBottom: '0' }}>
         <StyledContainer>
-          <LinkButton to={location.state?.from ?? '/'}>Go back</LinkButton>
+          <LinkButton
+            to={location.state?.from ?? '/'}
+            state={{ currentPage: location.state?.currentPage }}
+          >
+            {t('goBackBtn')}
+          </LinkButton>
 
           <StyledMovieDetailsContainer>
             <img
@@ -82,22 +89,25 @@ const MovieDetailsPage = () => {
               {tagline && <i>{tagline}</i>}
               {release_date && (
                 <p>
-                  <b>Year:</b> <span>{release_date}</span>
+                  <b>{t('movieDetailsPageYear')}:</b>{' '}
+                  <span>{release_date}</span>
                 </p>
               )}
               {genres && (
                 <p>
-                  <b>Genres:</b> <span>{genres}</span>
+                  <b>{t('movieDetailsPageGenres')}:</b> <span>{genres}</span>
                 </p>
               )}
               {production_countries && (
                 <p>
-                  <b>Countries:</b> <span>{production_countries}</span>
+                  <b>{t('movieDetailsPageCountries')}:</b>{' '}
+                  <span>{production_countries}</span>
                 </p>
               )}
               {overview && (
                 <p>
-                  <b>Overview:</b> <span>{overview}</span>
+                  <b>{t('movieDetailsPageOverview')}:</b>{' '}
+                  <span>{overview}</span>
                 </p>
               )}
             </div>
@@ -107,17 +117,27 @@ const MovieDetailsPage = () => {
             style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}
           >
             <LinkButton
-              state={{ from: location.state?.from ?? '/' }}
+              state={{
+                from: location.state?.from ?? '/',
+                currentPage: location.state?.currentPage,
+              }}
               to={isCastVisible ? '' : 'cast'}
             >
-              {isCastVisible ? 'Hide Cast' : 'Show Cast'}
+              {isCastVisible
+                ? `${t('movieDetailsPageHideCast')}`
+                : `${t('movieDetailsPageShowCast')}`}
             </LinkButton>
 
             <LinkButton
-              state={{ from: location.state?.from ?? '/' }}
+              state={{
+                from: location.state?.from ?? '/',
+                currentPage: location.state?.currentPage,
+              }}
               to={isReviewsVisible ? '' : 'reviews'}
             >
-              {isReviewsVisible ? 'Hide Reviews' : 'Show Reviews'}
+              {isReviewsVisible
+                ? `${t('movieDetailsPageHideReviews')}`
+                : `${t('movieDetailsPageShowReviews')}`}
             </LinkButton>
           </nav>
         </StyledContainer>
@@ -126,13 +146,6 @@ const MovieDetailsPage = () => {
       <StyledSection>
         <StyledContainer>
           <Outlet />
-
-          {/* <Routes>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Routes>
-
-          (without Layout) */}
         </StyledContainer>
       </StyledSection>
     </>

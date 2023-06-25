@@ -8,7 +8,7 @@ export const StyledCastList = styled.ul`
   & .cast__card {
     width: calc((100% - 20px) / 2);
     height: auto;
-    border-radius: 10px;
+    border-radius: ${props => props.theme.radii.medium};
 
     @media screen and (min-width: 768px) {
       width: calc((100% - 60px) / 4);
@@ -23,6 +23,6 @@ export const StyledCastList = styled.ul`
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: ${props => props.theme.radii.medium};
   }
 `;

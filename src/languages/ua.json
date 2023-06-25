@@ -1,0 +1,43 @@
+{
+  "headerHome": "Головна сторінка",
+  "headerMovies": "Пошук фільмів",
+
+  "languageSelect": "Мова",
+
+  "homePageTitle": "Популярні фільми сьогодні",
+
+  "moviesPageNoMovies": "Вибачте, фільмів немає...",
+
+  "movieDetailsPageYear": "Рік релізу",
+  "movieDetailsPageGenres": "Жанри",
+  "movieDetailsPageCountries": "Країни",
+  "movieDetailsPageOverview": "Огляд",
+  "movieDetailsPageHideCast": "Сховати акторський склад",
+  "movieDetailsPageShowCast": "Показати акторський склад",
+  "movieDetailsPageHideReviews": "Сховати відгуки",
+  "movieDetailsPageShowReviews": "Показати відгуки",
+
+  "сastNoInformation": "Вибачте, інформації поки що немає",
+  "сastCharacter": "Персонаж",
+  "сastName": "Актор",
+
+  "reviewsNoReviews": "Відгуків ще немає",
+  "reviewsAuthor": "Автор",
+  "reviewsContent": "Відгук",
+
+  "footerMotto": "ваші улюблені фільми та серіали.",
+  "footerRights": "Всі права захищені.",
+  "footerDevelopedBy": "Сайт розроблений",
+  "footerDeveloper": "Іриною Помешкіною",
+
+  "page404": "404 Сторінка не знайдена.",
+
+  "goHomeBtn": "Повернутись на головну",
+  "goBackBtn": "Повернутись назад",
+
+  "loaderText": "Завантаження...",
+
+  "searchFormLabel": "Спробуйте знайти фільм",
+  "searchFormPlaceholder": "Введіть назву фільму",
+  "searchFormBtn": "Пошук"
+}

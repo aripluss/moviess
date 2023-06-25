@@ -7,7 +7,8 @@ export const StyledReviewsList = styled.ul`
 
   & .review__card {
     padding: 20px;
-    border: 1px solid #ffde59;
+    border: ${props => props.theme.borders.normal}
+      ${props => props.theme.colors.accentSecondary};
     border-radius: 10px;
   }
 `;

@@ -5,9 +5,10 @@ const API_KEY = 'dea82e5d25cc68048d98e1915bc0a2dc';
 const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-const getTrending = async () => {
+const getTrending = async currentPage => {
   const params = {
     api_key: API_KEY,
+    page: currentPage,
   };
 
   const { data } = await axios.get('/trending/movie/day', {
@@ -20,13 +21,17 @@ const getTrending = async () => {
     poster_path: getImagePath(poster_path),
   }));
 
-  return results;
+  data.results = results;
+  if (data.total_pages > 500) data.total_pages = 500;
+
+  return data;
 };
 
-const searchMoviesByQuery = async query => {
+const searchMoviesByQuery = async ({ query, currentPage }) => {
   const params = {
     api_key: API_KEY,
     query,
+    page: currentPage,
   };
 
   const { data } = await axios.get('/search/movie', { params });
@@ -37,7 +42,10 @@ const searchMoviesByQuery = async query => {
     poster_path: getImagePath(poster_path),
   }));
 
-  return results;
+  data.results = results;
+  if (data.total_pages > 500) data.total_pages = 500;
+
+  return data;
 };
 
 const getMovieDetails = async movieId => {
