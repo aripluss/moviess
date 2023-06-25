@@ -2,16 +2,18 @@ import { Outlet } from 'react-router-dom';
 
 import { Header, Footer } from 'layout/index';
 
+import { PageWrapper } from './Layout.styled';
+
 export const Layout = () => {
   return (
-    <div className="">
+    <PageWrapper>
       <Header />
 
-      <main className="">
+      <main className="main">
         <Outlet />
       </main>
 
       <Footer />
-    </div>
+    </PageWrapper>
   );
 };

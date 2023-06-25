@@ -1,24 +1,38 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import logo from 'images/moviess-logo.png';
+import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
+import ThemeSwitcher from 'components/ThemeSwitcher/ThemeSwitcher';
 
-import { StyledHeader } from './Header.styled';
-import { StyledContainer } from 'components/Container/Container.styled';
+import { StyledHeader, StyledHeaderContainer } from './Header.styled';
 import { StyledNavLink } from 'components/App.styled';
 
 export const Header = () => {
+  const { t } = useTranslation();
+
   return (
     <StyledHeader>
-      <StyledContainer>
+      <StyledHeaderContainer>
         <nav className="nav">
           <Link to="/">
-            <img alt="logo" src={logo} width={80} />
+            <img
+              alt="logo"
+              src={logo}
+              width={80}
+              style={{ alignSelf: 'center', padding: 5 }}
+            />
           </Link>
 
-          <StyledNavLink to="/">Home</StyledNavLink>
-          <StyledNavLink to="/movies">Movies</StyledNavLink>
+          <StyledNavLink to="/">{t('headerHome')}</StyledNavLink>
+          <StyledNavLink to="/movies">{t('headerMovies')}</StyledNavLink>
         </nav>
-      </StyledContainer>
+
+        <div style={{ display: 'flex', gap: '60px' }}>
+          <LanguageSelector />
+          <ThemeSwitcher />
+        </div>
+      </StyledHeaderContainer>
     </StyledHeader>
   );
 };

@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const StyledButton = styled.button`
   padding: 10px;
-  color: #8250df;
-  border: 1px solid #ffde59;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
+  color: ${props => props.theme.colors.accentPrimary};
+  border: ${props => props.theme.borders.normal}
+    ${props => props.theme.colors.accentPrimary};
+  border-radius: ${props => props.theme.radii.medium};
+  transition: background-color ${props => props.theme.transition},
+    color ${props => props.theme.transition};
 
   &:hover,
   &:focus-visible {
-    background-color: #ffde59;
+    background-color: ${props => props.theme.colors.accentPrimary};
+    color: ${props => props.theme.colors.accentSecondary};
   }
 `;

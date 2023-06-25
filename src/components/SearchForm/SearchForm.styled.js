@@ -5,16 +5,25 @@ export const SearchFormStyled = styled.form`
   gap: 20px;
   align-items: center;
 
+  & .label {
+    display: flex;
+    gap: 20px;
+  }
+
   & .input {
+    width: 100%;
     padding: 2px 8px;
     border: none;
-    border-bottom: 1px solid #ffde59;
-    transition: border-bottom 0.3s ease;
+    border-bottom: ${props => props.theme.borders.normal}
+      ${props => props.theme.colors.accentSecondary};
+    background-color: transparent;
+    transition: border-bottom ${props => props.theme.transition};
 
     &:hover,
     &:focus {
       outline: none;
-      border-bottom: 1px solid #8250df;
+      border-bottom: ${props => props.theme.borders.normal}
+        ${props => props.theme.colors.accentPrimary};
     }
   }
 `;

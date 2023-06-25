@@ -1,13 +1,19 @@
-import { lazy, Suspense } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import React, { createContext, lazy, Suspense, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { I18nextProvider } from 'react-i18next';
 
+import i18n from '../languages/i18n';
 import { routes } from 'service/routes';
 import { Layout } from 'layout/Layout/Layout';
 import { Loader } from 'components/index';
 
-import { Page404Styled } from './App.styled';
 import { StyledSection } from './Section/Section.styled';
 import { StyledContainer } from './Container/Container.styled';
+import { GlobalStyles } from 'styles/GlobalStyles';
+import { theme } from 'styles/theme';
+import { colors } from 'styles/colors';
+import { MainStyled } from './App.styled';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const MoviesPage = lazy(() => import('pages/Movies/MoviesPage'));
@@ -16,65 +22,66 @@ const MovieDetailsPage = lazy(() =>
 );
 const Cast = lazy(() => import('pages/Cast/Cast'));
 const Reviews = lazy(() => import('pages/Reviews/Reviews'));
+const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
 const { HOME, MOVIES, MOVIE_ID_DETAILS, CAST, REVIEWS } = routes;
 
+export const ThemeContext = createContext();
+
 export const App = () => {
+  const [currentTheme, setCurrentTheme] = useState(
+    localStorage.getItem('theme') || 'light'
+  );
+
+  const toggleTheme = () => {
+    setCurrentTheme(prevTheme => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme); // Записываем новую тему в локальное хранилище
+      return newTheme;
+    });
+  };
+
+  const normalizedTheme = { ...theme, ...colors[currentTheme] };
+
   return (
-    <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path={HOME} element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path={'/' + MOVIES} element={<MoviesPage />} />
-          <Route path={'/' + MOVIE_ID_DETAILS} element={<MovieDetailsPage />}>
-            <Route path={CAST} element={<Cast />} />
-            <Route path={REVIEWS} element={<Reviews />} />
-          </Route>
-        </Route>
+    <I18nextProvider i18n={i18n}>
+      <ThemeContext.Provider value={{ currentTheme, toggleTheme }}>
+        <ThemeProvider theme={normalizedTheme}>
+          <GlobalStyles />
 
-        <Route
-          path="*"
-          element={
-            <StyledSection>
-              <StyledContainer>
-                <Page404Styled>
-                  404 Page Not Found. ➪ <Link to={HOME}>Go Home</Link>
-                </Page404Styled>
-              </StyledContainer>
-            </StyledSection>
-          }
-        />
-      </Routes>
-    </Suspense>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route exact path={HOME} element={<Layout />}>
+                <Route exact index element={<HomePage />} />
+                <Route exact path={'/' + MOVIES} element={<MoviesPage />} />
+                <Route
+                  exact
+                  path={'/' + MOVIE_ID_DETAILS}
+                  element={<MovieDetailsPage />}
+                >
+                  <Route exact path={CAST} element={<Cast />} />
+                  <Route exact path={REVIEWS} element={<Reviews />} />
+                </Route>
+              </Route>
 
-    //////////////////// without Layout ////////////////////
-    // <>
-    //   <Header />
-
-    //   <main>
-    //     <Routes>
-    //       <Route path="/" element={<HomePage />} />
-
-    //       <Route path="/movies/:movieId/*" element={<MovieDetailsPage />} />
-
-    //       <Route path="/movies" element={<MoviesPage />} />
-
-    //       <Route
-    //         path="*"
-    //         element={
-    //           <StyledSection>
-    //             <StyledContainer>
-    //               <Page404Styled>
-    //                 404 Page Not Found. ➪ <Link to="/">Go Home</Link>
-    //               </Page404Styled>
-    //             </StyledContainer>
-    //           </StyledSection>
-    //         }
-    //       />
-    //     </Routes>
-    //   </main>
-
-    //   <Footer />
-    // </>
+              <Route
+                path="*"
+                element={
+                  <MainStyled>
+                    <StyledSection
+                      style={{ height: '100%', backgroundColor: ' #121214' }}
+                    >
+                      <StyledContainer>
+                        <PageNotFound />
+                      </StyledContainer>
+                    </StyledSection>
+                  </MainStyled>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </I18nextProvider>
   );
 };

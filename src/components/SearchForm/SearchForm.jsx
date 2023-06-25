@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { SearchFormStyled } from './SearchForm.styled';
 import { StyledButton } from 'components/Button/Button.styled';
 
 export const SearchForm = ({ onSubmit = () => {}, defaultValue }) => {
+  const { t } = useTranslation();
   const searchRef = useRef();
 
   const handleSubmit = event => {
@@ -15,21 +17,21 @@ export const SearchForm = ({ onSubmit = () => {}, defaultValue }) => {
 
   return (
     <SearchFormStyled onSubmit={handleSubmit}>
-      <label>
-        Let's try to find a movie
+      <label className="label">
+        {t('searchFormLabel')}
         <input
           className="input"
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Enter the movie title"
+          placeholder={`${t('searchFormPlaceholder')}`}
           ref={searchRef}
           defaultValue={defaultValue}
         ></input>
       </label>
 
       <StyledButton type="submit" className="button">
-        Search
+        {t('searchFormBtn')}
       </StyledButton>
     </SearchFormStyled>
   );
