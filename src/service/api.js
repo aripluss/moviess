@@ -1,9 +1,14 @@
 import axios from 'axios';
 import defaultImg from 'images/no-img.jpg';
 
-const API_KEY = 'dea82e5d25cc68048d98e1915bc0a2dc';
-const BASE_URL_IMAGE = 'https://image.tmdb.org/t/p/original';
-axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+const { REACT_APP_API_KEY, REACT_APP_BASE_URL, REACT_APP_BASE_URL_IMAGE } =
+  process.env;
+
+const API_KEY = REACT_APP_API_KEY;
+const BASE_URL = REACT_APP_BASE_URL;
+const BASE_URL_IMAGE = REACT_APP_BASE_URL_IMAGE;
+
+axios.defaults.baseURL = BASE_URL;
 
 const getTrending = async currentPage => {
   const params = {

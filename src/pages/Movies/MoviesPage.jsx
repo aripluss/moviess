@@ -19,10 +19,11 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(
-    location.state?.currentPage || 1,
+    location.state?.currentPage || 1
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
@@ -44,8 +45,9 @@ const MoviesPage = () => {
           return;
         }
 
-        if (currentPage === 1) {
+        if (currentPage === 1 && isSubmitted) {
           toast.success(`Found ${moviesByQuery.total_results} movies!`);
+          setIsSubmitted(false);
         }
 
         setMovies(moviesByQuery.results);
@@ -56,7 +58,7 @@ const MoviesPage = () => {
         setIsLoading(false);
       }
     })();
-  }, [currentPage, searchQuery]);
+  }, [currentPage, searchQuery, isSubmitted]);
 
   useEffect(() => {
     if (error) {
@@ -68,6 +70,7 @@ const MoviesPage = () => {
   const onSubmit = searchValue => {
     setSearchParams({ query: searchValue });
     setCurrentPage(1);
+    setIsSubmitted(true);
   };
 
   function handlePageChange(page) {
