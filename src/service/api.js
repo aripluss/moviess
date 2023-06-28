@@ -7,7 +7,6 @@ const { REACT_APP_API_KEY, REACT_APP_BASE_URL, REACT_APP_BASE_URL_IMAGE } =
 const API_KEY = REACT_APP_API_KEY;
 const BASE_URL = REACT_APP_BASE_URL;
 const BASE_URL_IMAGE = REACT_APP_BASE_URL_IMAGE;
-
 axios.defaults.baseURL = BASE_URL;
 
 const getTrending = async currentPage => {
