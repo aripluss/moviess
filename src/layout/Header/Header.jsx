@@ -15,7 +15,7 @@ export const Header = () => {
     <StyledHeader>
       <StyledHeaderContainer>
         <nav className="nav">
-          <Link to="/">
+          <Link to="/" style={{ display: 'flex' }}>
             <img
               alt="logo"
               src={logo}

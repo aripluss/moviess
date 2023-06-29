@@ -15,12 +15,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Print Environment Variables
-        run: |
-          echo "API Key: ${{ secrets.REACT_APP_API_KEY }}"
-          echo "Base URL: ${{ secrets.REACT_APP_BASE_URL }}"
-          echo "Base URL Image: ${{ secrets.REACT_APP_BASE_URL_IMAGE }}"
-
       - name: Lint
         run: npm run lint:js
 

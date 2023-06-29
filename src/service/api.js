@@ -4,15 +4,6 @@ import defaultImg from 'images/no-img.jpg';
 const { REACT_APP_API_KEY, REACT_APP_BASE_URL, REACT_APP_BASE_URL_IMAGE } =
   process.env;
 
-console.log(
-  '1',
-  REACT_APP_API_KEY,
-  '2',
-  REACT_APP_BASE_URL,
-  '3',
-  REACT_APP_BASE_URL_IMAGE
-);
-
 const API_KEY = REACT_APP_API_KEY;
 const BASE_URL_IMAGE = REACT_APP_BASE_URL_IMAGE;
 axios.defaults.baseURL = REACT_APP_BASE_URL;
