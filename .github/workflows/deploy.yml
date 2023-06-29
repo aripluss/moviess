@@ -30,6 +30,9 @@ jobs:
 
       - name: Print Environment Variables
         run: |
-          echo "API Key: $REACT_APP_API_KEY"
-          echo "Base URL: $REACT_APP_BASE_URL"
-          echo "Base URL Image: $REACT_APP_BASE_URL_IMAGE"
+          echo "API Key: "
+          echo ${{ secrets.REACT_APP_API_KEY }}
+          echo "Base URL: "
+          echo ${{ secrets.REACT_APP_BASE_URL }}
+          echo "Base URL Image: "
+          echo ${{ secrets.REACT_APP_BASE_URL_IMAGE }}
