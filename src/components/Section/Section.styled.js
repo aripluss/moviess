@@ -6,7 +6,7 @@ export const StyledSection = styled.section`
   background-color: ${p => p.theme.colors.backgroundColor};
   transition: background-color ${props => props.theme.transition};
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     padding-top: 60px;
     padding-bottom: 60px;
   }

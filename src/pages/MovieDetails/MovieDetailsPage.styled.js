@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SelectStyled } from '../../components/Select/Select.styled';
 
 export const StyledMovieDetailsContainer = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ export const StyledMovieDetailsContainer = styled.div`
   margin-top: 40px;
   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: row;
   }
 
@@ -16,11 +17,11 @@ export const StyledMovieDetailsContainer = styled.div`
     height: 100%;
     border-radius: ${props => props.theme.radii.medium};
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
       width: 250px;
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}) {
       width: 300px;
     }
   }
@@ -43,7 +44,7 @@ export const StyledMovieDetailsContainer = styled.div`
     align-items: center;
     justify-content: center;
     background-color: ${props => props.theme.colors.accentSecondary};
-    //color: #000;
+    color: #000;
     border: ${props => props.theme.borders.normal}
       ${props => props.theme.colors.accentSecondary};
     border-radius: ${props => props.theme.radii.medium};
@@ -62,5 +63,16 @@ export const StyledMovieDetailsContainer = styled.div`
     padding: 6px 10px;
     font-weight: ${props => props.theme.fontWeights.medium};
     box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
+  }
+`;
+
+export const SelectTrailerStyled = styled(SelectStyled)`
+  & > select {
+    width: 100%;
+    margin: 0 auto 10px;
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      width: 614px;
+    }
   }
 `;

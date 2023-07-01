@@ -4,6 +4,6 @@ export const dark = {
     backgroundColor: '#474141',
     accentPrimary: '#8250df',
     accentSecondary: '#ffde59',
-    text: '#F7F7F7',
+    text: '#d7d7d7',
   },
 };

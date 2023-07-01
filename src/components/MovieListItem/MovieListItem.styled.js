@@ -9,11 +9,11 @@ export const StyledMovieListCard = styled.li`
   text-align: center;
   color: ${props => props.theme.colors.accentSecondary};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
     width: calc((100% - 60px) / 4);
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
     width: calc((100% - 80px) / 5);
   }
 
@@ -23,11 +23,11 @@ export const StyledMovieListCard = styled.li`
     object-fit: cover;
     border-radius: ${props => props.theme.radii.medium};
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
       height: 265px;
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
       height: 360px;
     }
   }

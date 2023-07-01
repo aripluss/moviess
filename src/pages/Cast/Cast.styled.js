@@ -10,11 +10,11 @@ export const StyledCastList = styled.ul`
     height: auto;
     border-radius: ${props => props.theme.radii.medium};
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
       width: calc((100% - 60px) / 4);
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
       width: calc((100% - 100px) / 6);
     }
   }
@@ -22,6 +22,7 @@ export const StyledCastList = styled.ul`
   & .cast__poster {
     width: 100%;
     height: 250px;
+    margin-bottom: 8px;
     object-fit: cover;
     border-radius: ${props => props.theme.radii.medium};
   }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LanguageSelectorStyled = styled.div`
+export const SelectStyled = styled.div`
   align-self: center;
   display: flex;
   align-items: center;

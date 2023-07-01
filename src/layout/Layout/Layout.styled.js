@@ -7,15 +7,16 @@ export const PageWrapper = styled.div`
   margin: auto;
   border-radius: ${props => props.theme.radii.large};
   filter: drop-shadow(0 15px 30px rgb(0 0 0 / 0.2));
-  padding: 80px 0 40px;
+  padding: 40px 0;
   width: 95%;
   max-width: 360px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.md}) {
+    padding: 60px 0 40px;
     max-width: 832px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${props => props.theme.breakpoints.lg}) {
     max-width: 1344px;
   }
 

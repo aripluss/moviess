@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LanguageSelectorStyled } from './LanguageSelector.styled';
+import { SelectStyled } from '../Select/Select.styled';
 
 const LanguageSelector = () => {
   const { i18n, t } = useTranslation();
@@ -24,7 +24,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <LanguageSelectorStyled>
+    <SelectStyled>
       <label htmlFor="language-select">{t('languageSelect')}:</label>
       <select
         id="language-select"
@@ -44,7 +44,7 @@ const LanguageSelector = () => {
           {/*<img src="../../images/flag_ua.png" alt="Ukrainian" width={10} />*/}
         </option>
       </select>
-    </LanguageSelectorStyled>
+    </SelectStyled>
   );
 };
 

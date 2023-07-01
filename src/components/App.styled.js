@@ -10,6 +10,7 @@ export const StyledNavLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   text-decoration: none;
   border-bottom: 2px solid transparent;
   padding: 15px;

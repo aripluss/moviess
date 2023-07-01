@@ -14,6 +14,10 @@ const getTrending = async currentPage => {
     page: currentPage,
   };
 
+  if (localStorage.getItem('language') === 'ua') {
+    params.language = 'uk-UA';
+  }
+
   const { data } = await axios.get('/trending/movie/day', {
     params,
   });
@@ -37,6 +41,10 @@ const searchMoviesByQuery = async ({ query, currentPage }) => {
     page: currentPage,
   };
 
+  if (localStorage.getItem('language') === 'ua') {
+    params.language = 'uk-UA';
+  }
+
   const { data } = await axios.get('/search/movie', { params });
 
   const results = data.results.map(({ id, title, poster_path }) => ({
@@ -54,7 +62,12 @@ const searchMoviesByQuery = async ({ query, currentPage }) => {
 const getMovieDetails = async movieId => {
   const params = {
     api_key: API_KEY,
+    append_to_response: 'videos',
   };
+
+  if (localStorage.getItem('language') === 'ua') {
+    params.language = 'uk-UA';
+  }
 
   const { data } = await axios.get(`/movie/${movieId}`, {
     params,
@@ -70,9 +83,14 @@ const getMovieDetails = async movieId => {
     overview,
     genres,
     production_countries,
+    videos,
   } = data;
 
-  return {
+  const filteredVideos = videos.results.filter(
+    video => video.official === true
+  );
+
+  const newData = {
     poster_path: getImagePath(poster_path),
     title,
     tagline,
@@ -84,13 +102,20 @@ const getMovieDetails = async movieId => {
     production_countries: production_countries
       .map(country => country.name)
       .join(', '),
+    videos: filteredVideos,
   };
+
+  return newData;
 };
 
 const getMovieCredits = async movieId => {
   const params = {
     api_key: API_KEY,
   };
+
+  if (localStorage.getItem('language') === 'ua') {
+    params.language = 'uk-UA';
+  }
 
   const { data } = await axios.get(`/movie/${movieId}/credits`, { params });
 
@@ -110,7 +135,13 @@ const getMovieReviews = async movieId => {
 
   const { data } = await axios.get(`/movie/${movieId}/reviews`, { params });
 
-  const reviews = data.results.map(({ author, content }) => ({
+  const uniqueReviews = data.results.filter(
+    (review, idx, self) =>
+      idx === self.findIndex(r => r.content === review.content)
+  );
+
+  const reviews = uniqueReviews.map(({ id, author, content }) => ({
+    id,
     author,
     content,
   }));
@@ -121,6 +152,17 @@ const getMovieReviews = async movieId => {
 const getImagePath = file_path => {
   return file_path ? `${BASE_URL_IMAGE}${file_path}` : defaultImg;
 };
+
+// const getFilmVideos = async movieId => {
+//   const params = {
+//     api_key: API_KEY,
+//     language: localStorage.getItem('language') === 'ua' ? 'uk-UA' : 'en-US',
+//   };
+//
+//   const { results } = await axios.get(`/movie/${movieId}/videos`, { params });
+//
+//   return results;
+// };
 
 export {
   getTrending,

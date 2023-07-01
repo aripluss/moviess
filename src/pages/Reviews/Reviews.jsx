@@ -12,6 +12,8 @@ const Reviews = () => {
   const { t } = useTranslation();
 
   const [movieReviews, setMovieReviews] = useState([]);
+  const [commentStates, setCommentStates] = useState({});
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -40,6 +42,27 @@ const Reviews = () => {
     }
   }, [error]);
 
+  const formatText = inputText => {
+    // Заміна ** на жирне форматування
+    const boldText = inputText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Заміна _ на курсивне форматування
+    const formattedText = boldText.replace(/_(.*?)_/g, '<em>$1</em>');
+    // Заміна посилань в форматі <a href=""></a>
+    const linkedText = formattedText.replace(
+      /<a href="(.*?)">(.*?)<\/a>/g,
+      '<a href="$1" target="_blank" rel="noopener noreferrer">$2</a>'
+    );
+
+    return { __html: linkedText };
+  };
+
+  const toggleComment = commentId => {
+    setCommentStates(prevState => ({
+      ...prevState,
+      [commentId]: !prevState[commentId],
+    }));
+  };
+
   return (
     <>
       {isLoading && <Loader />}
@@ -57,14 +80,36 @@ const Reviews = () => {
       {Boolean(movieReviews.length) && (
         <StyledReviewsList>
           {movieReviews.map(review => {
-            const { author, content } = review;
+            const { id, author, content } = review;
+            const isExpanded = commentStates[id] || false;
+
             return (
               <li key={author} className="review__card">
                 <p>
-                  <b>{t('reviewsAuthor')}:</b> {author}
+                  <span className="highlight">{t('reviewsAuthor')}: </span>
+                  {author}
                 </p>
                 <p>
-                  <b>{t('reviewsContent')}:</b> {content}
+                  <span className="highlight">{t('reviewsContent')}: </span>
+
+                  <span
+                    dangerouslySetInnerHTML={
+                      isExpanded
+                        ? formatText(content)
+                        : formatText(content.slice(0, 500) + '...')
+                    }
+                  ></span>
+
+                  {content.length > 500 && (
+                    <button
+                      className="readMore"
+                      onClick={() => toggleComment(id)}
+                    >
+                      {isExpanded
+                        ? t('reviewsCollapseContent')
+                        : t('reviewsReadMore')}
+                    </button>
+                  )}
                 </p>
               </li>
             );

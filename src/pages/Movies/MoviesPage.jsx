@@ -13,7 +13,7 @@ import { StyledContainer } from 'components/Container/Container.styled';
 import { MoviesListStyled } from 'components/MoviesList/MoviesList.styled';
 
 const MoviesPage = () => {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const location = useLocation();
 
   const [movies, setMovies] = useState([]);
@@ -58,7 +58,7 @@ const MoviesPage = () => {
         setIsLoading(false);
       }
     })();
-  }, [currentPage, searchQuery, isSubmitted]);
+  }, [currentPage, searchQuery, isSubmitted, i18n.language]);
 
   useEffect(() => {
     if (error) {

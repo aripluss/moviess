@@ -13,17 +13,16 @@ import { StyledContainer } from 'components/Container/Container.styled';
 import { MoviesListStyled } from 'components/MoviesList/MoviesList.styled';
 
 const HomePage = () => {
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const location = useLocation();
 
   const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(
-    location.state?.currentPage || 1,
+    location.state?.currentPage || 1
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     (async () => {
@@ -40,7 +39,7 @@ const HomePage = () => {
         setIsLoading(false);
       }
     })();
-  }, [currentPage]);
+  }, [currentPage, i18n.language]);
 
   useEffect(() => {
     if (error) {

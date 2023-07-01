@@ -6,7 +6,6 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --pagination-color: ${props => props.theme.colors.accentPrimary};
     --pagination-hover-color: ${props => props.theme.colors.accentPrimary};
-    //--pagination-hover-color: #8250df;
     --pagination-bg: ${props => props.theme.colors.backgroundColor};
    }
 
@@ -56,7 +55,6 @@ a {
 a:hover,
 a:focus-visible {
   color: ${props => props.theme.colors.accentSecondary};
-
 }
 img {
   display: block;
@@ -67,4 +65,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #313131;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${props => props.theme.colors.accentSecondary};
+    border-radius: ${props => props.theme.radii.normal};
+  }
 `;
