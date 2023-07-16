@@ -41,5 +41,10 @@
 
   "searchFormLabel": "Let's try to find a movie",
   "searchFormPlaceholder": "Enter the movie title",
-  "searchFormBtn": "Search"
+  "searchFormBtn": "Search",
+
+  "toast": {
+    "moviesFound": "Found {{count}} movies!",
+    "noMoviesFound": "No movies found, please try another query."
+  }
 }

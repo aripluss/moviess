@@ -14,22 +14,24 @@ export const Header = () => {
   return (
     <StyledHeader>
       <StyledHeaderContainer>
-        <nav className="nav">
-          <Link to="/" style={{ display: 'flex' }}>
-            <img
-              alt="logo"
-              src={logo}
-              width={80}
-              style={{ alignSelf: 'center', padding: 5 }}
-            />
-          </Link>
+        <Link to="/" style={{ display: 'flex' }} className={'logo'}>
+          <img
+            alt="logo"
+            src={logo}
+            width={80}
+            style={{ alignSelf: 'center', padding: 5 }}
+          />
+        </Link>
 
+        <nav className="nav">
           <StyledNavLink to="/">{t('headerHome')}</StyledNavLink>
           <StyledNavLink to="/movies">{t('headerMovies')}</StyledNavLink>
         </nav>
 
-        <div style={{ display: 'flex', gap: '60px' }}>
+        <div className={'language'}>
           <LanguageSelector />
+        </div>
+        <div className={'theme'}>
           <ThemeSwitcher />
         </div>
       </StyledHeaderContainer>

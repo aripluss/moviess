@@ -41,5 +41,10 @@
 
   "searchFormLabel": "Спробуйте знайти фільм",
   "searchFormPlaceholder": "Введіть назву фільму",
-  "searchFormBtn": "Пошук"
+  "searchFormBtn": "Пошук",
+
+  "toast": {
+    "moviesFound": "Знайдено {{count}} фільми(-ів)!",
+    "noMoviesFound": "Фільмів не знайдено, спробуйте інший запит."
+  }
 }

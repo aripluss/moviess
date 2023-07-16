@@ -64,7 +64,7 @@ const Reviews = () => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: '40px' }}>
       {isLoading && <Loader />}
 
       {!isLoading && !error && !movieReviews.length && (
@@ -118,7 +118,7 @@ const Reviews = () => {
       )}
 
       <Toaster />
-    </>
+    </div>
   );
 };
 

@@ -36,7 +36,7 @@ const MovieDetailsPage = () => {
 
         setMovieDetails(movieDetails);
         setMovieTrailers(movieDetails.videos);
-        setCurrentTrailerLink(movieDetails.videos[0].key);
+        setCurrentTrailerLink(movieDetails?.videos[0]?.key);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -175,7 +175,8 @@ const MovieDetailsPage = () => {
           </nav>
         </StyledContainer>
       </StyledSection>
-      <StyledSection>
+
+      <StyledSection style={{ paddingTop: 0 }}>
         <StyledContainer>
           <Outlet />
         </StyledContainer>

@@ -18,7 +18,7 @@ import { MainStyled } from './App.styled';
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const MoviesPage = lazy(() => import('pages/Movies/MoviesPage'));
 const MovieDetailsPage = lazy(() =>
-  import('pages/MovieDetails/MovieDetailsPage'),
+  import('pages/MovieDetails/MovieDetailsPage')
 );
 const Cast = lazy(() => import('pages/Cast/Cast'));
 const Reviews = lazy(() => import('pages/Reviews/Reviews'));
@@ -30,7 +30,7 @@ export const ThemeContext = createContext();
 
 export const App = () => {
   const [currentTheme, setCurrentTheme] = useState(
-    localStorage.getItem('theme') || 'light',
+    localStorage.getItem('theme') || 'light'
   );
 
   const toggleTheme = () => {
@@ -65,12 +65,10 @@ export const App = () => {
               </Route>
 
               <Route
-                path='*'
+                path="*"
                 element={
                   <MainStyled>
-                    <StyledSection
-                      style={{ height: '100%', backgroundColor: ' #121214' }}
-                    >
+                    <StyledSection>
                       <StyledContainer>
                         <PageNotFound />
                       </StyledContainer>

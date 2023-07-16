@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { StyledMovieListCard } from './MovieListItem.styled';
 
@@ -22,11 +24,12 @@ export const MovieListItem = ({
         }}
       >
         <div className="movie-card__hover-mask">
-          <img
+          <LazyLoadImage
             className="movie-card__poster"
             src={poster_path}
             alt={title + 'poster'}
-            loading="lazy"
+            effect="blur"
+            wrapperProps={{ style: { display: 'block' } }}
           />
         </div>
         <div className="movie-card__content">

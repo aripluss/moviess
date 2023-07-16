@@ -8,23 +8,47 @@ export const StyledHeader = styled.header`
   border-top-right-radius: ${props => props.theme.radii.large};
 
   & .nav {
+    height: 100%;
     display: flex;
+    justify-content: center;
     gap: 30px;
+    grid-area: nav;
+
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
+      justify-content: start;
+    }
   }
 `;
 
 export const StyledHeaderContainer = styled(StyledContainer)`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 10px;
+  column-gap: 20px;
+  row-gap: 5px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 0.6fr 2.5fr 0.9fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    'logo language theme'
+    'nav nav nav';
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0px;
+    margin-top: 0;
+    grid-template-areas:
+      'logo nav theme'
+      'logo nav language';
+  }
+
+  .logo {
+    grid-area: logo;
+  }
+  .theme {
+    grid-area: theme;
+    justify-self: end;
+  }
+  .language {
+    grid-area: language;
+    justify-self: end;
   }
 `;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { getMovieCredits } from 'service/api';
 import { Loader } from 'components/index';
@@ -41,7 +43,7 @@ const Cast = () => {
   }, [error]);
 
   return (
-    <>
+    <div style={{ paddingTop: '40px' }}>
       {isLoading && <Loader />}
 
       {!isLoading && !error && !movieCast.length && (
@@ -60,11 +62,12 @@ const Cast = () => {
             const { profile_path, character, name } = castMember;
             return (
               <li className="cast__card" key={name}>
-                <img
+                <LazyLoadImage
                   className="cast__poster"
                   src={profile_path}
                   alt={name}
-                  loading="lazy"
+                  effect="blur"
+                  wrapperProps={{ style: { display: 'block' } }}
                 />
                 <p>
                   <b>{t('сastCharacter')}:</b> {character}
@@ -79,7 +82,7 @@ const Cast = () => {
       )}
 
       <Toaster />
-    </>
+    </div>
   );
 };
 

@@ -78,13 +78,11 @@ const HomePage = () => {
                   })}
               </MoviesListStyled>
 
-              {/*{movies.length > 20 && (*/}
               <ResponsivePagination
                 total={totalPages}
                 current={currentPage}
                 onPageChange={page => handlePageChange(page)}
               />
-              {/*)}*/}
             </>
           )}
         </StyledContainer>

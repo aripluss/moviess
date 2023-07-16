@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledMovieListCard = styled.li`
-  position: relative;
   width: calc((100% - 20px) / 2);
   height: auto;
   border-radius: ${props => props.theme.radii.medium};

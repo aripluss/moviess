@@ -24,5 +24,7 @@ export const PageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    background-color: ${p => p.theme.colors.backgroundColor};
+    transition: background-color ${props => props.theme.transition};
   }
 `;

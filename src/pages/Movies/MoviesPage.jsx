@@ -40,13 +40,16 @@ const MoviesPage = () => {
         const moviesByQuery = await searchMoviesByQuery(queryData);
 
         if (!moviesByQuery.results.length) {
-          setError(`No movies found, please try another query.`);
+          setError(t('toast.noMoviesFound'));
           setMovies([]);
           return;
         }
 
         if (currentPage === 1 && isSubmitted) {
-          toast.success(`Found ${moviesByQuery.total_results} movies!`);
+          const toastMessage = t('toast.moviesFound', {
+            count: moviesByQuery.total_results,
+          });
+          toast.success(toastMessage);
           setIsSubmitted(false);
         }
 
@@ -58,7 +61,7 @@ const MoviesPage = () => {
         setIsLoading(false);
       }
     })();
-  }, [currentPage, searchQuery, isSubmitted, i18n.language]);
+  }, [currentPage, searchQuery, isSubmitted, i18n.language, t]);
 
   useEffect(() => {
     if (error) {
