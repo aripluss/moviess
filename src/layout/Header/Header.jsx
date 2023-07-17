@@ -19,6 +19,7 @@ export const Header = () => {
             alt="logo"
             src={logo}
             width={80}
+            height="auto"
             style={{ alignSelf: 'center', padding: 5 }}
           />
         </Link>
